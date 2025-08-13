@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
     public float jumpForce = 7f;
-    public float speed;
+    public float sideMoveSpeed = 5f; // tốc độ di chuyển ngang
 
     [Header("Ground Check Settings")]
     public Transform groundCheck;
@@ -21,13 +21,11 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private Vector3 startPosition;
 
-    // Các hash animation để tránh việc tạo string nhiều lần
+    // Các hash animation
     static int s_DeadHash = Animator.StringToHash("Dead");
     static int s_RunStartHash = Animator.StringToHash("runStart");
     static int s_MovingHash = Animator.StringToHash("Moving");
     static int s_JumpingHash = Animator.StringToHash("Jumping");
-    static int s_JumpingSpeedHash = Animator.StringToHash("JumpSpeed");
-    static int s_SlidingHash = Animator.StringToHash("Sliding");
 
     void Start()
     {
@@ -39,20 +37,17 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Kiểm tra nhân vật có đang chạm đất không
+        // Kiểm tra chạm đất
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundLayer);
 
         // Nhảy
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z); // reset trục Y
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-
-            // Gọi animation "Jumping" khi nhảy
             animator.SetBool(s_JumpingHash, true);
         }
 
-        // Nếu nhân vật đã chạm đất, dừng animation "Jumping"
         if (isGrounded)
         {
             animator.SetBool(s_JumpingHash, false);
@@ -68,46 +63,19 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
 
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        // Luôn chạy về phía trước (Z)
+        Vector3 direction = new Vector3(horizontal * sideMoveSpeed, rb.velocity.y, moveSpeed);
 
-        // Tính toán tốc độ hiện tại
-        float speed = GetCurrentSpeed();
+        // Cập nhật velocity
+        rb.velocity = direction;
 
-        if (direction.magnitude >= 0.1f)
-        {
-            // Nếu tốc độ >= 1, kích hoạt animation "runStart"
-            if (speed >= 1f)
-            {
-                animator.SetBool(s_RunStartHash, true);  // Bật animation "runStart"
-            }
+        // Animation
+        animator.SetBool(s_RunStartHash, true);
+        animator.SetBool(s_MovingHash, true);
 
-            // Chuyển sang animation "Moving"
-            animator.SetBool(s_MovingHash, true);
-
-            // Xoay nhân vật về hướng di chuyển
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
-
-            // Di chuyển nhân vật
-            Vector3 move = direction * moveSpeed;
-            rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
-        }
-        else
-        {
-            // Dừng animation "Moving" và "runStart" khi không di chuyển
-            animator.SetBool(s_RunStartHash, false);
-            animator.SetBool(s_MovingHash, false);
-
-            rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
-        }
-    }
-
-    float GetCurrentSpeed()
-    {
-        // Tính toán và trả về tốc độ hiện tại (bỏ qua trục Y)
-        return new Vector3(rb.velocity.x, 0f, rb.velocity.z).magnitude;
+        // Xoay nhân vật về hướng chạy (luôn nhìn thẳng)
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
 
     void Respawn()
@@ -116,7 +84,6 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = Vector3.zero;
     }
 
-    // Hiển thị hình tròn kiểm tra Ground trong Scene
     void OnDrawGizmosSelected()
     {
         if (groundCheck == null) return;
