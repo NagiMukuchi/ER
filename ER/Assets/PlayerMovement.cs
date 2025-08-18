@@ -7,9 +7,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 5f;
+    public float startMoveSpeed = 0f;         // bắt đầu từ 0 để Idle
+    public float moveSpeed;
+    public float targetMoveSpeed = 5f;        // tốc độ sau khi chạy
+    public float maxMoveSpeed = 15f;
+    public float accelerationRate = 0.2f;
     public float jumpForce = 7f;
-    public float sideMoveSpeed = 5f; // tốc độ di chuyển ngang
+    public float sideMoveSpeed = 5f;
 
     [Header("Ground Check Settings")]
     public Transform groundCheck;
@@ -19,10 +23,10 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private Animator animator;
     private bool isGrounded;
+    private bool isStartingRun = false;
     private Vector3 startPosition;
 
-    // Các hash animation
-    static int s_DeadHash = Animator.StringToHash("Dead");
+    // Animation hash
     static int s_RunStartHash = Animator.StringToHash("runStart");
     static int s_MovingHash = Animator.StringToHash("Moving");
     static int s_JumpingHash = Animator.StringToHash("Jumping");
@@ -33,10 +37,32 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         animator = GetComponent<Animator>();
         startPosition = transform.position;
+
+        moveSpeed = startMoveSpeed;
+        animator.SetBool(s_MovingHash, false);
+        animator.SetBool(s_RunStartHash, false);
     }
 
     void Update()
     {
+        // Tăng tốc dần khi đã bắt đầu chạy
+        if (isStartingRun && moveSpeed < maxMoveSpeed)
+        {
+            moveSpeed += accelerationRate * Time.deltaTime;
+        }
+
+        // Bắt đầu chạy từ Idle sang runStart
+        if (!isStartingRun && Input.anyKeyDown) // hoặc bạn có thể thay bằng auto-start
+        {
+            isStartingRun = true;
+            animator.SetBool(s_RunStartHash, true);
+            moveSpeed = targetMoveSpeed; // bắt đầu chạy với tốc độ mục tiêu
+        }
+
+        // Điều chỉnh tốc độ animation
+        float animSpeedMultiplier = Mathf.Max(moveSpeed / targetMoveSpeed, 0.1f);
+        animator.speed = animSpeedMultiplier;
+
         // Kiểm tra chạm đất
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundLayer);
 
@@ -64,17 +90,22 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
 
-        // Luôn chạy về phía trước (Z)
-        Vector3 direction = new Vector3(horizontal * sideMoveSpeed, rb.velocity.y, moveSpeed);
-
-        // Cập nhật velocity
+        // Luôn chạy thẳng nếu đã bắt đầu
+        float forwardSpeed = isStartingRun ? moveSpeed : 0f;
+        Vector3 direction = new Vector3(horizontal * sideMoveSpeed, rb.velocity.y, forwardSpeed);
         rb.velocity = direction;
 
-        // Animation
-        animator.SetBool(s_RunStartHash, true);
-        animator.SetBool(s_MovingHash, true);
+        // Chuyển animation chạy
+        if (isStartingRun)
+        {
+            animator.SetBool(s_MovingHash, true);
+        }
+        else
+        {
+            animator.SetBool(s_MovingHash, false);
+        }
 
-        // Xoay nhân vật về hướng chạy (luôn nhìn thẳng)
+        // Nhân vật luôn nhìn thẳng
         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
 
@@ -82,6 +113,13 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.position = startPosition + Vector3.up * 2f;
         rb.velocity = Vector3.zero;
+
+        moveSpeed = startMoveSpeed;
+        isStartingRun = false;
+
+        animator.speed = 1f;
+        animator.SetBool(s_RunStartHash, false);
+        animator.SetBool(s_MovingHash, false);
     }
 
     void OnDrawGizmosSelected()

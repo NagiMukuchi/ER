@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public GameObject[] mapPrefabs;
     public Transform player;
-    public int mapsAhead = 3;
+    public int mapsAhead = 5;
 
     private List<GameObject> spawnedMaps = new List<GameObject>();
     private Transform lastExit;
@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         // Spawn thêm nếu player gần điểm exit cuối cùng
-        if (lastExit != null && player.position.z + 50f > lastExit.position.z)
+        if (lastExit != null && player.position.z + 20f > lastExit.position.z)
         {
             SpawnMap();
             RemoveOldMap();
