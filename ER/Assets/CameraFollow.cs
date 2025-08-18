@@ -4,20 +4,39 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target;           // Nhân vật
-    public Vector3 offset = new Vector3(0f, 5f, -7f); // Khoảng cách camera so với nhân vật
-    public float smoothSpeed = 10f;    // Độ mượt
+    [Header("Target Settings")]
+    public Transform target;                // Nhân vật
+
+    [Header("Camera Offset")]
+    public Vector3 offset = new Vector3(0f, 5f, -7f);
+
+    [Header("Smooth Settings")]
+    public float positionSmoothTime = 0.15f; // Thời gian làm mượt vị trí
+    public float rotationSmoothSpeed = 5f;   // Tốc độ làm mượt xoay
+
+    private Vector3 velocity = Vector3.zero;
 
     void LateUpdate()
     {
-        // Tính vị trí mong muốn của camera
-        Vector3 desiredPosition = target.position + target.rotation * offset;
+        if (target == null) return;
 
-        // Di chuyển camera mượt tới vị trí đó
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+        // --- Làm mượt vị trí ---
+        Vector3 desiredPosition = target.position + target.rotation * offset;
+        Vector3 smoothedPosition = Vector3.SmoothDamp(
+            transform.position,
+            desiredPosition,
+            ref velocity,
+            positionSmoothTime
+        );
         transform.position = smoothedPosition;
 
-        // Camera luôn nhìn về nhân vật
-        transform.LookAt(target);
+        // --- Làm mượt xoay ---
+        Vector3 lookDirection = target.position - transform.position;
+        Quaternion desiredRotation = Quaternion.LookRotation(lookDirection);
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            desiredRotation,
+            rotationSmoothSpeed * Time.deltaTime
+        );
     }
 }
