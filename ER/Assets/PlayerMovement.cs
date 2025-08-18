@@ -48,6 +48,9 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetBool(s_MovingHash, false);
         animator.SetBool(s_RunStartHash, false);
+
+        // ✅ Ban đầu quay mặt về phía camera (Idle nhìn ra màn hình)
+        transform.rotation = Quaternion.Euler(0f, 180f, 0f);
     }
 
     void Update()
@@ -60,6 +63,9 @@ public class PlayerMovement : MonoBehaviour
         {
             isStartingRun = true;
             animator.SetBool(s_RunStartHash, true);
+
+            // ✅ Khi bắt đầu chạy thì quay lại hướng chạy
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
 
         // Tăng tốc chỉ khi đang chạy, ĐANG ở mặt đất và không trong trạng thái nhảy
@@ -72,11 +78,9 @@ public class PlayerMovement : MonoBehaviour
         // Nhảy (chỉ khi đang chạm đất)
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            // đẩy lực nhảy
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
-            // set trạng thái nhảy
             isJumping = true;
             animator.SetBool(s_JumpingHash, true);
 
@@ -90,20 +94,16 @@ public class PlayerMovement : MonoBehaviour
             isJumping = false;
             animator.SetBool(s_JumpingHash, false);
 
-            // Giảm tốc khi TIẾP ĐẤT (cả tiến thẳng + ngang)
             ApplyLandingSlowdown();
 
-            // Khôi phục animation chạy (không dừng nữa)
             animator.speed = AnimSpeedFromMove();
         }
 
-        // Nếu không nhảy thì để animator chạy bình thường theo tốc độ
         if (!isJumping)
         {
             animator.speed = AnimSpeedFromMove();
         }
 
-        // Chặn rơi mãi
         if (transform.position.y < -20f)
         {
             Respawn();
@@ -114,19 +114,16 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
 
-        // Luôn chạy thẳng nếu đã bắt đầu
         float forwardSpeed = isStartingRun ? moveSpeed : 0f;
         Vector3 velocity = new Vector3(horizontal * currentSideSpeed, rb.velocity.y, forwardSpeed);
         rb.velocity = velocity;
 
-        // Cờ animation chạy
         animator.SetBool(s_MovingHash, isStartingRun);
 
-        // Nhân vật luôn nhìn thẳng
-        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        // ❌ Không cần ép luôn nhìn thẳng ở đây nữa
+        // transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
 
-    // Giảm tốc khi CHẠM ĐẤT
     void ApplyLandingSlowdown()
     {
         moveSpeed *= jumpSpeedReduceFactor;
@@ -135,10 +132,8 @@ public class PlayerMovement : MonoBehaviour
         currentSideSpeed = sideMoveSpeed * jumpSpeedReduceFactor;
     }
 
-    // Tính tốc độ animator theo tốc độ di chuyển (nhẹ, tránh chạy quá nhanh)
     float AnimSpeedFromMove()
     {
-        // 1x ở chậm, 1.5x ở max speed
         return Mathf.Lerp(1f, 1.5f, moveSpeed / maxMoveSpeed);
     }
 
@@ -156,6 +151,9 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool(s_RunStartHash, false);
         animator.SetBool(s_MovingHash, false);
         animator.SetBool(s_JumpingHash, false);
+
+        // ✅ Quay lại Idle nhìn ra màn hình
+        transform.rotation = Quaternion.Euler(0f, 180f, 0f);
     }
 
     void OnDrawGizmosSelected()
@@ -163,5 +161,10 @@ public class PlayerMovement : MonoBehaviour
         if (groundCheck == null) return;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
+    }
+
+    public bool IsRunning()
+    {
+        return isStartingRun; // hoặc animator.GetBool(s_MovingHash);
     }
 }

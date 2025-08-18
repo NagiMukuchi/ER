@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         // Spawn thêm nếu player gần điểm exit cuối cùng
-        if (lastExit != null && player.position.z + 20f > lastExit.position.z)
+        if (lastExit != null && player.position.z + 30f > lastExit.position.z)
         {
             SpawnMap();
             RemoveOldMap();
