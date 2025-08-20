@@ -191,6 +191,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.02
       objectReference: {fileID: 0}
+    - target: {fileID: 23000012925308870, guid: e4a6e14a3028d0745b6de33d884bf62a,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

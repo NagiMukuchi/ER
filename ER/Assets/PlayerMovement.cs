@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 7f;
     [Range(0f, 1f)]
     public float jumpSpeedReduceFactor = 0.5f; // khi CHẠM ĐẤT mới giảm còn % này
+    public int maxJumps = 2;           // ✅ Số lần nhảy tối đa (1 = nhảy thường, 2 = double jump)
+
+    private int jumpCount = 0;         // ✅ Đếm số lần nhảy đã thực hiện
 
     [Header("Ground Check Settings")]
     public Transform groundCheck;
@@ -28,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private bool isGrounded;
     private bool isStartingRun = false;
-    private bool isJumping = false;     // true: đang ở trên không
     private Vector3 startPosition;
 
     // Animation hash
@@ -58,6 +60,19 @@ public class PlayerMovement : MonoBehaviour
         // Kiểm tra chạm đất
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundLayer);
 
+        // Reset khi chạm đất
+        if (isGrounded && rb.velocity.y <= 0.01f)
+        {
+            if (jumpCount > 0)   // vừa rơi xuống xong
+            {
+                ApplyLandingSlowdown();
+            }
+
+            jumpCount = 0;
+            animator.SetBool(s_JumpingHash, false);
+            animator.speed = AnimSpeedFromMove();
+        }
+
         // Bắt đầu chạy từ Idle sang runStart
         if (!isStartingRun && Input.anyKeyDown)
         {
@@ -68,40 +83,24 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
 
-        // Tăng tốc chỉ khi đang chạy, ĐANG ở mặt đất và không trong trạng thái nhảy
-        if (isStartingRun && !isJumping && moveSpeed < maxMoveSpeed)
+        // Tăng tốc chỉ khi đang chạy và không quá max
+        if (isStartingRun && moveSpeed < maxMoveSpeed)
         {
             moveSpeed += accelerationRate * Time.deltaTime;
             if (moveSpeed > maxMoveSpeed) moveSpeed = maxMoveSpeed;
         }
 
-        // Nhảy (chỉ khi đang chạm đất)
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        // ✅ Nhảy (cho phép nhảy nếu chưa vượt maxJumps)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumps)
         {
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
-            isJumping = true;
+            jumpCount++;
             animator.SetBool(s_JumpingHash, true);
 
-            // 🛑 DỪNG animation trong lúc đang nhảy
+            // 🛑 DỪNG animation trong lúc nhảy
             animator.speed = 0f;
-        }
-
-        // Vừa CHẠM ĐẤT sau khi nhảy
-        if (isGrounded && isJumping)
-        {
-            isJumping = false;
-            animator.SetBool(s_JumpingHash, false);
-
-            ApplyLandingSlowdown();
-
-            animator.speed = AnimSpeedFromMove();
-        }
-
-        if (!isJumping)
-        {
-            animator.speed = AnimSpeedFromMove();
         }
 
         if (transform.position.y < -20f)
@@ -119,9 +118,6 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = velocity;
 
         animator.SetBool(s_MovingHash, isStartingRun);
-
-        // ❌ Không cần ép luôn nhìn thẳng ở đây nữa
-        // transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
 
     void ApplyLandingSlowdown()
@@ -145,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed = startMoveSpeed;
         currentSideSpeed = sideMoveSpeed;
         isStartingRun = false;
-        isJumping = false;
+        jumpCount = 0;
 
         animator.speed = 1f;
         animator.SetBool(s_RunStartHash, false);
@@ -165,6 +161,6 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsRunning()
     {
-        return isStartingRun; // hoặc animator.GetBool(s_MovingHash);
+        return isStartingRun;
     }
 }
