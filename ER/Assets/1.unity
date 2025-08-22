@@ -424,6 +424,7 @@ MonoBehaviour:
   sideMoveSpeed: 3
   jumpForce: 7
   jumpSpeedReduceFactor: 0.5
+  maxJumps: 2
   groundCheck: {fileID: 1260484978}
   groundDistance: 0.4
   groundLayer:
@@ -1162,6 +1163,60 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 9a26112fdfc12324d8fee247fbeb44e7, type: 3}
+--- !u!1 &812098150
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 812098152}
+  - component: {fileID: 812098151}
+  m_Layer: 0
+  m_Name: FishboneSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &812098151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812098150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984733a7e921ef040b69276ccb5fbc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishbonePrefab: {fileID: 1453974047}
+  player: {fileID: 303919913}
+  spawnDistance: 40
+  minSpawnInterval: 1.5
+  maxSpawnInterval: 3.5
+  maxFishbones: 30
+  destroyDistance: 50
+  lineLength: 5
+  lineSpacing: 1.5
+  coinHeight: 0.5
+--- !u!4 &812098152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812098150}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1051064080 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000011514364366, guid: e4a6e14a3028d0745b6de33d884bf62a,
@@ -1297,6 +1352,69 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &1453974046
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100000, guid: c52e3c1f121dda74299d2b29c86fa3f6, type: 3}
+      propertyPath: m_Name
+      value: Fishbone
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c52e3c1f121dda74299d2b29c86fa3f6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c52e3c1f121dda74299d2b29c86fa3f6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c52e3c1f121dda74299d2b29c86fa3f6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c52e3c1f121dda74299d2b29c86fa3f6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c52e3c1f121dda74299d2b29c86fa3f6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c52e3c1f121dda74299d2b29c86fa3f6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c52e3c1f121dda74299d2b29c86fa3f6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c52e3c1f121dda74299d2b29c86fa3f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c52e3c1f121dda74299d2b29c86fa3f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c52e3c1f121dda74299d2b29c86fa3f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c52e3c1f121dda74299d2b29c86fa3f6, type: 3}
+--- !u!1 &1453974047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: c52e3c1f121dda74299d2b29c86fa3f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1453974046}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1477201008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1537,11 +1655,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 303919913}
-  idleOffset: {x: 0.67, y: 0.98, z: 2.76}
-  runOffset: {x: 0, y: 3.69, z: -6.06}
+  offset: {x: 0, y: 2.46, z: -4.74}
   positionSmoothTime: 0.15
   rotationSmoothSpeed: 5
-  offsetLerpSpeed: 2
 --- !u!1001 &1651612377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1946,3 +2062,5 @@ SceneRoots:
   - {fileID: 1984051461}
   - {fileID: 1477201008}
   - {fileID: 247329402}
+  - {fileID: 1453974046}
+  - {fileID: 812098152}
