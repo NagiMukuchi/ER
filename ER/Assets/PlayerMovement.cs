@@ -11,8 +11,6 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     public float maxMoveSpeed = 15f;    // tốc độ tối đa
     public float accelerationRate = 2f; // tốc độ tăng tốc
-    public float sideMoveSpeed = 5f;    // tốc độ di chuyển ngang
-    private float currentSideSpeed;     // tốc độ ngang hiện tại
 
     [Header("Jump Settings")]
     public float jumpForce = 7f;
@@ -26,6 +24,11 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundLayer;
+
+    [Header("Lane Settings")]
+    public float laneDistance = 3f;      // khoảng cách giữa các lane
+    private int currentLane = 0;         // 0 = giữa, -1 = trái, +1 = phải
+    public float laneChangeSpeed = 10f;  // tốc độ chuyển lane
 
     private Rigidbody rb;
     private Animator animator;
@@ -46,7 +49,6 @@ public class PlayerMovement : MonoBehaviour
         startPosition = transform.position;
 
         moveSpeed = startMoveSpeed;
-        currentSideSpeed = sideMoveSpeed;
 
         animator.SetBool(s_MovingHash, false);
         animator.SetBool(s_RunStartHash, false);
@@ -103,6 +105,16 @@ public class PlayerMovement : MonoBehaviour
             animator.speed = 0f;
         }
 
+        // ✅ Điều khiển lane bằng A/D hoặc mũi tên
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+        {
+            if (currentLane > -1) currentLane--;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+        {
+            if (currentLane < 1) currentLane++;
+        }
+
         if (transform.position.y < -20f)
         {
             Respawn();
@@ -111,11 +123,17 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-
         float forwardSpeed = isStartingRun ? moveSpeed : 0f;
-        Vector3 velocity = new Vector3(horizontal * currentSideSpeed, rb.velocity.y, forwardSpeed);
-        rb.velocity = velocity;
+
+        // Tính X mục tiêu dựa trên lane
+        float targetX = currentLane * laneDistance;
+        float newX = Mathf.Lerp(transform.position.x, targetX, Time.fixedDeltaTime * laneChangeSpeed);
+
+        // Duy trì tốc độ chạy + trọng lực
+        rb.velocity = new Vector3(0f, rb.velocity.y, forwardSpeed);
+
+        // Dịch dần sang lane
+        rb.position = new Vector3(newX, rb.position.y, rb.position.z);
 
         animator.SetBool(s_MovingHash, isStartingRun);
     }
@@ -124,8 +142,6 @@ public class PlayerMovement : MonoBehaviour
     {
         moveSpeed *= jumpSpeedReduceFactor;
         if (moveSpeed < 1f) moveSpeed = 1f;
-
-        currentSideSpeed = sideMoveSpeed * jumpSpeedReduceFactor;
     }
 
     float AnimSpeedFromMove()
@@ -139,7 +155,6 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = Vector3.zero;
 
         moveSpeed = startMoveSpeed;
-        currentSideSpeed = sideMoveSpeed;
         isStartingRun = false;
         jumpCount = 0;
 
@@ -150,6 +165,9 @@ public class PlayerMovement : MonoBehaviour
 
         // ✅ Quay lại Idle nhìn ra màn hình
         transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+
+        // Reset lane
+        currentLane = 0;
     }
 
     void OnDrawGizmosSelected()

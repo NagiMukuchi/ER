@@ -123,6 +123,60 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &49523532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 49523533}
+  - component: {fileID: 49523534}
+  m_Layer: 0
+  m_Name: FishboneSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &49523533
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49523532}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: 101, z: -13.64}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 695273225}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &49523534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49523532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984733a7e921ef040b69276ccb5fbc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishbonePrefab: {fileID: 1453974047}
+  player: {fileID: 303919913}
+  spawnDistance: 40
+  minSpawnInterval: 1.5
+  maxSpawnInterval: 3.5
+  maxFishbones: 30
+  destroyDistance: 50
+  lineLength: 5
+  lineSpacing: 1.5
+  coinHeight: 0.5
 --- !u!1001 &169140246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -198,7 +252,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4000010822335774, guid: e4a6e14a3028d0745b6de33d884bf62a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1085622049}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1000011514364366, guid: e4a6e14a3028d0745b6de33d884bf62a,
         type: 3}
@@ -267,7 +325,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4000011607790234, guid: 9f0db6c5e9d5e3e4d9c0f51362e59d00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 812098152}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1000013956375748, guid: 9f0db6c5e9d5e3e4d9c0f51362e59d00,
         type: 3}
@@ -302,6 +364,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 44bfb6e7a0a6cd541bb29e99af852562, type: 3}
+--- !u!4 &247329408 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000011607790234, guid: 9f0db6c5e9d5e3e4d9c0f51362e59d00,
+    type: 3}
+  m_PrefabInstance: {fileID: 247329402}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &303919904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -512,6 +580,60 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!1 &372877426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 372877427}
+  - component: {fileID: 372877428}
+  m_Layer: 0
+  m_Name: FishboneSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &372877427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372877426}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.71, y: 101, z: -94.55}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 698533995}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &372877428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372877426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984733a7e921ef040b69276ccb5fbc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishbonePrefab: {fileID: 1453974047}
+  player: {fileID: 303919913}
+  spawnDistance: 40
+  minSpawnInterval: 1.5
+  maxSpawnInterval: 3.5
+  maxFishbones: 30
+  destroyDistance: 50
+  lineLength: 5
+  lineSpacing: 1.5
+  coinHeight: 0.5
 --- !u!1 &378730125
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,6 +812,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &406566241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 406566242}
+  - component: {fileID: 406566243}
+  m_Layer: 0
+  m_Name: FishboneSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &406566242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406566241}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: 101, z: -40.68}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 767255304}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &406566243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406566241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984733a7e921ef040b69276ccb5fbc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishbonePrefab: {fileID: 1453974047}
+  player: {fileID: 303919913}
+  spawnDistance: 40
+  minSpawnInterval: 1.5
+  maxSpawnInterval: 3.5
+  maxFishbones: 30
+  destroyDistance: 50
+  lineLength: 5
+  lineSpacing: 1.5
+  coinHeight: 0.5
 --- !u!1001 &467180084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -744,7 +920,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4000011634737870, guid: 627ea187cfa7b524482f0725ce9ffafe,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1030160300}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1000011138244650, guid: 627ea187cfa7b524482f0725ce9ffafe,
         type: 3}
@@ -779,6 +959,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 9a26112fdfc12324d8fee247fbeb44e7, type: 3}
+--- !u!4 &467180090 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000011634737870, guid: 627ea187cfa7b524482f0725ce9ffafe,
+    type: 3}
+  m_PrefabInstance: {fileID: 467180084}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &581990545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -833,7 +1019,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4000010353861702, guid: 9b7ee2db83af4fe4da3b2af7d258d635,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 649933155}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1000011273485792, guid: 9b7ee2db83af4fe4da3b2af7d258d635,
         type: 3}
@@ -868,6 +1058,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 9a26112fdfc12324d8fee247fbeb44e7, type: 3}
+--- !u!4 &581990551 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000010353861702, guid: 9b7ee2db83af4fe4da3b2af7d258d635,
+    type: 3}
+  m_PrefabInstance: {fileID: 581990545}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &634974016 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000013847700760, guid: e4a6e14a3028d0745b6de33d884bf62a,
@@ -896,6 +1092,60 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 5dc9820c76494354e9e924a6c791efa7, type: 3}
+--- !u!1 &649933154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 649933155}
+  - component: {fileID: 649933156}
+  m_Layer: 0
+  m_Name: FishboneSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &649933155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649933154}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.72, y: 101, z: -112.51}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 581990551}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &649933156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649933154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984733a7e921ef040b69276ccb5fbc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishbonePrefab: {fileID: 1453974047}
+  player: {fileID: 303919913}
+  spawnDistance: 40
+  minSpawnInterval: 1.5
+  maxSpawnInterval: 3.5
+  maxFishbones: 30
+  destroyDistance: 50
+  lineLength: 5
+  lineSpacing: 1.5
+  coinHeight: 0.5
 --- !u!1001 &695273219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -950,7 +1200,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4000012510809264, guid: dcbeb2ef97131d241b111f35d4788477,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 49523533}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1000010291688486, guid: dcbeb2ef97131d241b111f35d4788477,
         type: 3}
@@ -985,6 +1239,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 9a26112fdfc12324d8fee247fbeb44e7, type: 3}
+--- !u!4 &695273225 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000012510809264, guid: dcbeb2ef97131d241b111f35d4788477,
+    type: 3}
+  m_PrefabInstance: {fileID: 695273219}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &698533989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1039,7 +1299,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4000013039219596, guid: 747e617dac045eb4f9fa9978b75bb475,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 372877427}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1000011824036212, guid: 747e617dac045eb4f9fa9978b75bb475,
         type: 3}
@@ -1074,6 +1338,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 278d5c6b4a4b61548afccfdb78e4b8a8, type: 3}
+--- !u!4 &698533995 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000013039219596, guid: 747e617dac045eb4f9fa9978b75bb475,
+    type: 3}
+  m_PrefabInstance: {fileID: 698533989}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &767255298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1128,7 +1398,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4000013960157730, guid: 544006c54b323e9419926850d7e3fbac,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 406566242}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1000011509899756, guid: 544006c54b323e9419926850d7e3fbac,
         type: 3}
@@ -1163,6 +1437,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 9a26112fdfc12324d8fee247fbeb44e7, type: 3}
+--- !u!4 &767255304 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000013960157730, guid: 544006c54b323e9419926850d7e3fbac,
+    type: 3}
+  m_PrefabInstance: {fileID: 767255298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &812098150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,13 +1490,67 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812098150}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.71, y: 101, z: -166.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 247329408}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1030160299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1030160300}
+  - component: {fileID: 1030160301}
+  m_Layer: 0
+  m_Name: FishboneSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1030160300
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030160299}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.71, y: 101, z: -130.49}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 467180090}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1030160301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030160299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984733a7e921ef040b69276ccb5fbc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishbonePrefab: {fileID: 1453974047}
+  player: {fileID: 303919913}
+  spawnDistance: 40
+  minSpawnInterval: 1.5
+  maxSpawnInterval: 3.5
+  maxFishbones: 30
+  destroyDistance: 50
+  lineLength: 5
+  lineSpacing: 1.5
+  coinHeight: 0.5
 --- !u!1 &1051064080 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000011514364366, guid: e4a6e14a3028d0745b6de33d884bf62a,
@@ -1245,6 +1579,120 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 9a26112fdfc12324d8fee247fbeb44e7, type: 3}
+--- !u!4 &1051064094 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000010822335774, guid: e4a6e14a3028d0745b6de33d884bf62a,
+    type: 3}
+  m_PrefabInstance: {fileID: 169140246}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1085622048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1085622049}
+  - component: {fileID: 1085622050}
+  m_Layer: 0
+  m_Name: FishboneSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1085622049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085622048}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: 101, z: 13.23}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1051064094}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1085622050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085622048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984733a7e921ef040b69276ccb5fbc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishbonePrefab: {fileID: 1453974047}
+  player: {fileID: 303919913}
+  spawnDistance: 40
+  minSpawnInterval: 1.5
+  maxSpawnInterval: 3.5
+  maxFishbones: 30
+  destroyDistance: 50
+  lineLength: 5
+  lineSpacing: 1.5
+  coinHeight: 0.5
+--- !u!1 &1125839916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1125839917}
+  - component: {fileID: 1125839918}
+  m_Layer: 0
+  m_Name: FishboneSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1125839917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125839916}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: 101, z: -22.59}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2025865703}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1125839918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125839916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984733a7e921ef040b69276ccb5fbc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishbonePrefab: {fileID: 1453974047}
+  player: {fileID: 303919913}
+  spawnDistance: 40
+  minSpawnInterval: 1.5
+  maxSpawnInterval: 3.5
+  maxFishbones: 30
+  destroyDistance: 50
+  lineLength: 5
+  lineSpacing: 1.5
+  coinHeight: 0.5
 --- !u!1 &1260484977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,6 +1863,60 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1453974046}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1463986378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1463986379}
+  - component: {fileID: 1463986380}
+  m_Layer: 0
+  m_Name: FishboneSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1463986379
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463986378}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: 101, z: -58.66}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1651612383}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1463986380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463986378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984733a7e921ef040b69276ccb5fbc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishbonePrefab: {fileID: 1453974047}
+  player: {fileID: 303919913}
+  spawnDistance: 40
+  minSpawnInterval: 1.5
+  maxSpawnInterval: 3.5
+  maxFishbones: 30
+  destroyDistance: 50
+  lineLength: 5
+  lineSpacing: 1.5
+  coinHeight: 0.5
 --- !u!1001 &1477201008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1469,7 +1971,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4000014005950316, guid: 3a5b1ed81a7bde440aa6d2317adcd689,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1861995007}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1000012734427800, guid: 3a5b1ed81a7bde440aa6d2317adcd689,
         type: 3}
@@ -1504,6 +2010,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 9a26112fdfc12324d8fee247fbeb44e7, type: 3}
+--- !u!4 &1477201014 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000014005950316, guid: 3a5b1ed81a7bde440aa6d2317adcd689,
+    type: 3}
+  m_PrefabInstance: {fileID: 1477201008}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1477679863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,6 +2170,60 @@ MonoBehaviour:
   offset: {x: 0, y: 2.46, z: -4.74}
   positionSmoothTime: 0.15
   rotationSmoothSpeed: 5
+--- !u!1 &1574150012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1574150013}
+  - component: {fileID: 1574150014}
+  m_Layer: 0
+  m_Name: FishboneSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1574150013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574150012}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: 101, z: -76.64}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2003007635}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1574150014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574150012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984733a7e921ef040b69276ccb5fbc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishbonePrefab: {fileID: 1453974047}
+  player: {fileID: 303919913}
+  spawnDistance: 40
+  minSpawnInterval: 1.5
+  maxSpawnInterval: 3.5
+  maxFishbones: 30
+  destroyDistance: 50
+  lineLength: 5
+  lineSpacing: 1.5
+  coinHeight: 0.5
 --- !u!1001 &1651612377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1712,7 +2278,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4000012177702996, guid: 5d6fcbaf51bca6b4594f12ca78b10a69,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1463986379}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1000011501633068, guid: 5d6fcbaf51bca6b4594f12ca78b10a69,
         type: 3}
@@ -1747,6 +2317,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 9a26112fdfc12324d8fee247fbeb44e7, type: 3}
+--- !u!4 &1651612383 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000012177702996, guid: 5d6fcbaf51bca6b4594f12ca78b10a69,
+    type: 3}
+  m_PrefabInstance: {fileID: 1651612377}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1785966082 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000012472769806, guid: e4a6e14a3028d0745b6de33d884bf62a,
@@ -1775,6 +2351,114 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 5dc9820c76494354e9e924a6c791efa7, type: 3}
+--- !u!1 &1861995006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1861995007}
+  - component: {fileID: 1861995008}
+  m_Layer: 0
+  m_Name: FishboneSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1861995007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861995006}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: 101, z: -157.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1477201014}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1861995008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861995006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984733a7e921ef040b69276ccb5fbc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishbonePrefab: {fileID: 1453974047}
+  player: {fileID: 303919913}
+  spawnDistance: 40
+  minSpawnInterval: 1.5
+  maxSpawnInterval: 3.5
+  maxFishbones: 30
+  destroyDistance: 50
+  lineLength: 5
+  lineSpacing: 1.5
+  coinHeight: 0.5
+--- !u!1 &1883729101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1883729102}
+  - component: {fileID: 1883729103}
+  m_Layer: 0
+  m_Name: FishboneSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1883729102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883729101}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.71, y: 101, z: -139.46}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1984051467}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1883729103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883729101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984733a7e921ef040b69276ccb5fbc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishbonePrefab: {fileID: 1453974047}
+  player: {fileID: 303919913}
+  spawnDistance: 40
+  minSpawnInterval: 1.5
+  maxSpawnInterval: 3.5
+  maxFishbones: 30
+  destroyDistance: 50
+  lineLength: 5
+  lineSpacing: 1.5
+  coinHeight: 0.5
 --- !u!1001 &1984051461
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1829,7 +2513,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4000013987384080, guid: 03576c724d3dcac4690f6ede40e47639,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1883729102}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1000014182718406, guid: 03576c724d3dcac4690f6ede40e47639,
         type: 3}
@@ -1864,6 +2552,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 9a26112fdfc12324d8fee247fbeb44e7, type: 3}
+--- !u!4 &1984051467 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000013987384080, guid: 03576c724d3dcac4690f6ede40e47639,
+    type: 3}
+  m_PrefabInstance: {fileID: 1984051461}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2003007629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1918,7 +2612,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4000010289757616, guid: adb7c187800cf1d4697c2ec26f0a4bd1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1574150013}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1000010333580956, guid: adb7c187800cf1d4697c2ec26f0a4bd1,
         type: 3}
@@ -1953,6 +2651,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 9a26112fdfc12324d8fee247fbeb44e7, type: 3}
+--- !u!4 &2003007635 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000010289757616, guid: adb7c187800cf1d4697c2ec26f0a4bd1,
+    type: 3}
+  m_PrefabInstance: {fileID: 2003007629}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2025865697
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2007,7 +2711,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4000010558597330, guid: efcbfaf146228ad40ae6c878d7806d64,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1125839917}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1000014290068172, guid: efcbfaf146228ad40ae6c878d7806d64,
         type: 3}
@@ -2042,6 +2750,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 9a26112fdfc12324d8fee247fbeb44e7, type: 3}
+--- !u!4 &2025865703 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000010558597330, guid: efcbfaf146228ad40ae6c878d7806d64,
+    type: 3}
+  m_PrefabInstance: {fileID: 2025865697}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2063,4 +2777,3 @@ SceneRoots:
   - {fileID: 1477201008}
   - {fileID: 247329402}
   - {fileID: 1453974046}
-  - {fileID: 812098152}
